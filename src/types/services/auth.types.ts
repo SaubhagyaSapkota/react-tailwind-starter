@@ -13,3 +13,14 @@ export interface LoginResponse {
   user: User;
   accessToken: string;
 }
+
+export interface userRegisterPayload {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface userLoginPayload {
+  email: string;
+  password: string;
+}
