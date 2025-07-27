@@ -107,20 +107,4 @@ const createApiInstance = ({
 export const apiClient = createApiInstance({
   baseUrl: ENV.APIS.BASE_URL,
   apiKey: ENV.APIS.API_KEY,
-  // interceptors: {
-  //   onRequest: config => {
-  //     console.log('Request made with ', config);
-  //     return config;
-  //   },
-  //   onResponse: response => {
-  //     console.log('Response received', response);
-  //     return response;
-  //   },
-  //   onResponseError: async error => {
-  //     console.error('Response error', error);
-  //     return Promise.reject(error);
-  //   },
-  // },
 });
-
-// More API instances can be created similarly...

@@ -1,4 +1,4 @@
-// import { lazy } from 'react';
+import { lazy } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router';
 
 import App from '@/app';
@@ -12,16 +12,15 @@ import { AuthLayout } from '@/features/auth';
 import LoginPage from '@/features/auth/pages/login-page';
 import { DashboardLayout } from '@/features/dashboard';
 import HomePage from '@/features/dashboard/home';
-import LandingPage from '@/features/site';
 
 import { ErrorFallback } from '../error-fallback';
 
 // // Auth
 // const Login = lazy(() => import('@/features/auth/pages/login-page'));
 
-// // Dashboard
+// Dashboard
 // const Dashboard = lazy(() => import('@/features/dashboard/home'));
-// const LandingPage = lazy(() => import('@/features/site/index'));
+const LandingPage = lazy(() => import('@/features/landing-page/index'));
 
 export const router = createBrowserRouter([
   {
