@@ -10,8 +10,10 @@ import Form from '@/components/layouts/form/rhookForm';
 import { ROUTES } from '@/configs/routes';
 import { AuthLayout } from '@/features/auth';
 import LoginPage from '@/features/auth/pages/login-page';
+import RegisterPage from '@/features/auth/pages/register-page';
 import { DashboardLayout } from '@/features/dashboard';
 import HomePage from '@/features/dashboard/home';
+import { ProfilePage } from '@/features/dashboard/home/components/viewUser';
 
 import { ErrorFallback } from '../error-fallback';
 
@@ -42,6 +44,7 @@ export const router = createBrowserRouter([
             children: [
               { path: ROUTES.AUTH.BASE, element: <Navigate replace to={ROUTES.AUTH.LOGIN} /> },
               { path: ROUTES.AUTH.LOGIN, element: <LoginPage /> },
+              { path: ROUTES.AUTH.REGISTER, element: <RegisterPage /> },
             ],
           },
         ],
@@ -56,6 +59,7 @@ export const router = createBrowserRouter([
             Component: DashboardLayout,
             children: [
               { path: ROUTES.DASHBOARD.BASE, element: <HomePage /> },
+              { path: ROUTES.DASHBOARD.PROFILE, element: <ProfilePage /> },
               {
                 path: `${ROUTES.DASHBOARD.BASE}/*`,
                 element: <NotFound showBackgroundGlow={false} />,

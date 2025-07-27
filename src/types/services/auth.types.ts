@@ -24,3 +24,13 @@ export interface userLoginPayload {
   email: string;
   password: string;
 }
+
+export interface UserProfile {
+  _id: string;
+  name: string;
+  email: string;
+  role: 'user' | 'admin';
+  gender?: string;
+  address?: string;
+  education?: string;
+}

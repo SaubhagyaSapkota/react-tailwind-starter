@@ -58,7 +58,7 @@ const createApiInstance = ({
     // Use provided onRequest interceptor or default one
     interceptors?.onRequest ??
       ((config: InternalAxiosRequestConfig) => {
-        const token = localStorage.getItem('access_token'); // Retrieve token from storage
+        const token = localStorage.getItem('token'); // Retrieve token from storage
 
         // Add Authorization header if token is available
         if (token) config.headers.set('Authorization', `Bearer ${token}`);

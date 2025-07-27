@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 import { LogIn } from 'lucide-react';
 
@@ -17,43 +17,53 @@ import { Input } from '@/components/ui/input';
 import { ROUTES } from '@/configs/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useLogin } from '../hooks/use-login';
-import { type LoginFormData, loginSchema } from '../schema/login-schema';
+import { useRegister } from '../hooks/use-register';
+import { type LoginFormData, registerSchema } from '../schema/register-schema';
 
-export const LoginForm = () => {
-  const { mutate } = useLogin();
+export const RegisterForm = () => {
+  const { mutate } = useRegister();
   const form = useForm<LoginFormData>({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
     mode: 'all',
   });
 
   const errorMessage = form.formState.errors?.root?.message || '';
   const isPending = form.formState.isSubmitting;
 
-  const navigate = useNavigate();
   const onSubmit = (data: LoginFormData) => {
     // eslint-disable-next-line no-console
     console.log('Submitting login form:', data);
-    mutate(data, {
-      onSuccess: ({ token }) => {
-        localStorage.setItem('token', token);
-        void navigate('/profile'); // Change to your route name
-      },
-      onError: error => {
-        // eslint-disable-next-line no-console
-        console.error('Login failed:', error);
-      },
-    });
+    mutate(data);
   };
-  // eslint-disable-next-line no-console
-  console.log(form.formState.errors);
+
   return (
     <Form {...form}>
       <form className='space-y-8' onSubmit={form.handleSubmit(onSubmit)}>
+        {/*name Address */}
+        <FormField
+          control={form.control}
+          name='name'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='mb-1'>Name Address</FormLabel>
+              <FormControl>
+                <Input
+                  className='bg-background/20 h-14 rounded-full px-4'
+                  error={form.formState.errors.email?.message}
+                  placeholder='john doe'
+                  type='name'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         {/* Email Address */}
         <FormField
           control={form.control}
@@ -95,7 +105,26 @@ export const LoginForm = () => {
             </FormItem>
           )}
         />
-
+        {/* role */}
+        <FormField
+          control={form.control}
+          name='role'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='mb-1'>role</FormLabel>
+              <FormControl>
+                <Input
+                  error={form.formState.errors.password?.message}
+                  placeholder='user..'
+                  type='text'
+                  {...field}
+                  className='bg-background/20 h-14 rounded-full px-4'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className='-mt-4 flex w-full items-center'>
           <Link
             className='text-primary text-sm font-semibold hover:underline'

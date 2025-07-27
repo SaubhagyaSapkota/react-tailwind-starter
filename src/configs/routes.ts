@@ -9,6 +9,7 @@ export const ROUTES = {
   },
   DASHBOARD: {
     BASE: '/dashboard',
+    PROFILE: '/profile',
     SETTINGS: '/dashboard/settings',
   },
   ERROR: {
