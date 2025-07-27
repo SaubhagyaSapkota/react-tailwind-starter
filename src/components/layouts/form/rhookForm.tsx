@@ -23,8 +23,8 @@ const Form = () => {
     formState: { errors },
   } = useForm<inputs>({ defaultValues: {}, resolver: zodResolver(loginZodSchema) });
 
-  // eslint-disable-next-line no-console
   const onSubmit: SubmitHandler<inputs> = data => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 
